@@ -90,4 +90,25 @@ Problemas do Dia
 		# OpenApi
 		# Swagger
 
-  
+  12/08/2026 
+
+4 - Criando uma arquitetura de pastas
+
+	- O primeiro ponto, é conseguir achar uma arquitetura de pastas que faça sentido com a realidade do projeto
+	para não ocorrer confusões durante o desenvolvimento do projeto. Estou percebendo que uma boa é organizar as
+	pastas em algo voltado para Services, infrastrutura e domain. 
+
+	 Dessa forma o código fica mais organizado, não irei criar bibliotecas dela para ser uma clear archicteture,
+	porém ira ficar organizado por essas funcionalidades. Sendo assim, criar o bussines para caso de uso, models
+	como se fosse o domain e data para as coisas que irão ficar armazenada no banco sendo algo parecido com 
+	infrastruture.
+
+	 Não esquecendo também da pasta controller que vai ser responsável pelos end-points. Ficando dessa forma a 
+	arquitetura de pasta do projeto:
+
+	desafio-itau
+	      |
+		  |- Controller (Cuida dos end-points.)
+		  |- Bussines (Onde será aplicado validações e regras de negócios.)
+		  |- Models (Ficara armazenado as entidades.)
+		  |- Data (Armazenamento em memória.)
