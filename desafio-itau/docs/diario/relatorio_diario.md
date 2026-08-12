@@ -77,4 +77,17 @@ Desafio Itaú diário de desenvolvimento. 
 
 	Seja compatível com esse tipo de projeto. 
 
+
+Problemas do Dia
+
+	- TypeLoadException : É um tipo de exception que pode acabar confundindo o que está realmente causando um 
+	problema dentro do sistema. Nesse caso foi a questão de duas bibliotecas a OpenApi e o Swagger estavam 
+	entrando em conflito por conta que o SwashBuckle não sabia qual é a versão correta
+
+	- Tópicos dos problemas 
+
+		# TypeLoadException
+		# OpenApi
+		# Swagger
+
   
