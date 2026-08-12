@@ -112,3 +112,82 @@ Problemas do Dia
 		  |- Bussines (Onde será aplicado validações e regras de negócios.)
 		  |- Models (Ficara armazenado as entidades.)
 		  |- Data (Armazenamento em memória.)
+
+5 - Criando end-points da api
+
+	- Vamos começar a implementar o end-point que recebe transações, ele vai ser um tipo de requisição HTTP e 
+	deve ser chamado de "/transacao", recebendo um JSON com dois valores como parâmetro "valor: double" e "dataHora: DateTime" 
+
+	 Primeira coisa que irei fazer é criar uma classe controller para esse e end-point. Quando criei a nova 
+	classe de controller estou percebendo que a herança para a classe controller que criei está sem referência
+	de namespace, então vou ter que verificar qual é o motivo disso.
+
+	 Problema resolvido e classe foi criada o problema era que o namespace e o nome da biblioteca controller
+	estava sendo herdada estava dando conflito por terem nomes iguais. Desmembro melhor esse problema no 
+	problemas do dia
+
+	 O primeiro end-point foi criado com os dois parâmetros que é exigido no desafio "valor" e "dataHora" o
+	o valor acabei colocando o tipo como double para conseguir aceitar ponto flutuante e o parâmetro de 
+	dataHora coloquei DateTime para implementar o horário da forma padrão.Dessa forma, agora vou começar a
+	implementar as regras que estão descrita no desafio.
+
+	 A primeira regra que implementei foi sobre os dois parâmetros virem null dentro da requisição, quando
+	eles vem null eu devolvo a requisição com um BadRequest, retornando uma mensagem "É necessário que os campos
+	'valor' e 'dataHora' venham preenchidos."
+
+	 Segunda regra a ser implementada é sobre não ser no futuro, precisa validar se o parâmetro de periodo está no
+	 momento presente ou passado. Validação foi implementada sem muita dificuldade, apenas um if foi o suficiente.
+
+	 Terceiro ponto que foi ajustado é a questão do end-point receber os valores por meio de json dentro do corpo da
+	 requisição.
+
+	 Quarto ponto ajuste das respostas da requisição no caso de dar erro ao invés de BadRequest é interessante 
+	 implementar uma resposta que faça mais sentido como é o que está no desafio o 422 Unprocessable Entity e 
+	 uma descrição do motivo de não poder ser processado. Foi ajustado também quando a transação foi aceita para
+	 201 Created. E por último o BadRequest no caso de não ter nenhum parâmetro para conseguir processar retornando
+	 o erro 400 BadRequest.
+
+
+
+
+
+
+
+Problemas do dia 
+
+	- Criação da classe controller: Não contem referência using namespace.
+
+	 O problema não era o que suspeitava de não conter referência de namespace o problema estava sendo que o nome
+	do namespace era o mesmo da classe que iria herdar a controller. Então nessa caso o meu namespace estava como
+	"desafio_itau.Controller" e a classe que seria herdade para conseguir fazer a contrução do controller se chama
+	"Controller" essa repetição de Controller foi o que estava ocasionando o problema, a resposta generica de erro
+	que foi retornada para eu começar a fazer uma analise sobre foi essa aqui:
+	
+		"'Controller' is a namespace but is used like a type"
+	
+	 Solução: Alterando  o namespace de "desafio_itau.Controller" para "desafio_itau.ControllerApi" já resolveu esse problema
+
+	-  Quando escolho para rodar o projeto em https, está acontecendo um problema com o response do servidor para o
+	cliente com essa seguinte mensagem "Failed to fetch" e fala que as possíveis razões são CORS Network Failure e
+	URL scheme must be "http" or "https" for CORS request.
+
+	 Pelo que consegui compreender do problema é que eu estava utilizando a url do próprio projeto para chamar ele mesmo,
+	dessa maneira fazendo com que o CORS fosse ativado e não permitindo que a requisição fosse chamada corretamente. Notei
+	essa mudança somente no momento em que visualizei um terminal que é onde ficam as urls da API mostrando a API que deve
+	ser consumida e a API padrão do próprio projeto. O motivo desse erro foi eu estar afim de usar o swagger para fazer o
+	teste. Irei começar a utilizar o postman para fazer os testes do meu projeto como pede o desafio o problema atual foi
+	a falta de atenção junto ao conceito de CORS que estava faltando da minha parte, o erro que estava sempre retornando
+	era esse: 
+
+	 "	Failed to fetch.
+		Possible Reasons:
+
+		CORS
+		Network Failure
+		URL scheme must be "http" or "https" for CORS request.
+	 "
+
+	  Solução: Escolher a url correta em vez de escolher a própria url da API que não é para ser utilizada ou usar o POSTMAN
+	  como é sugerido no desafio.
+
+	 

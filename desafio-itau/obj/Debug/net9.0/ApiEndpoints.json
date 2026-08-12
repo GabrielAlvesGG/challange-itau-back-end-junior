@@ -1,7 +1,23 @@
 [
   {
+    "ContainingType": "desafio_itau.ControllerApi.TransacaoController",
+    "Method": "transacao",
+    "RelativePath": "transacao",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "transacao",
+        "Type": "desafio_itau.Models.TransacaoModels",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__1",
     "RelativePath": "weatherforecast",
     "HttpMethod": "GET",
     "IsController": false,
